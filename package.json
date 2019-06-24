@@ -1,11 +1,12 @@
 {
     "name": "memoizor",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "TypeScript memoize library",
-    "main": "build/src/index.ts",
-    "types": "build/src/index.d.ts",
+    "main": "build/index.ts",
+    "types": "build/index.d.ts",
     "scripts": {
         "build": "tsc",
+        "clean": "rm -Rf build",
         "pretest": "npm run build",
         "test": "jest",
         "test:watch": "jest --watch",
