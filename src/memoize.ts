@@ -1,6 +1,5 @@
 export interface MemoizeOptions {
     type?: "async";
-    ttl?: number;
     hasher?: (...args: any[]) => string;
 }
 
@@ -51,7 +50,8 @@ function memoizeFunction<Fn extends Function>(
 
     if (options && options.type === "async") {
         return (async (...args: any[]) => {
-            let key = args.toString();
+            /** Use generic hasher method if exists in options */
+            let key = hashKey(args, options);
 
             if (!cache[key]) {
                 cache[key] = await fn.apply(thisObject, args);
@@ -61,7 +61,8 @@ function memoizeFunction<Fn extends Function>(
         }) as any;
     } else {
         return ((...args: any[]) => {
-            let key = args.toString();
+            /** Use generic hasher method if exists in options */
+            let key = hashKey(args, options);
 
             if (!cache[key]) {
                 cache[key] = fn.apply(thisObject, args);
@@ -69,5 +70,13 @@ function memoizeFunction<Fn extends Function>(
 
             return cache[key];
         }) as any;
+    }
+}
+
+function hashKey(args: any[], options?: MemoizeOptions): string {
+    if (options && options.hasher) {
+        return options.hasher(args);
+    } else {
+        return args.toString();
     }
 }
