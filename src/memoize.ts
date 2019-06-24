@@ -1,6 +1,6 @@
 export interface MemoizeOptions {
     type?: "async";
-    hasher?: (...args: any[]) => string;
+    hasher?: (...args: any[]) => any;
 }
 
 /** Overload memoize function */
@@ -73,7 +73,7 @@ function memoizeFunction<Fn extends Function>(
     }
 }
 
-function hashKey(args: any[], options?: MemoizeOptions): string {
+function hashKey(args: any[], options?: MemoizeOptions): any {
     if (options && options.hasher) {
         return options.hasher(args);
     } else {
