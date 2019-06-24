@@ -1,0 +1,30 @@
+{
+    "name": "memoizor",
+    "version": "0.1.0",
+    "description": "TypeScript memoize library",
+    "main": "src/index.ts",
+    "scripts": {
+        "test": "jest",
+        "prepublish": "npm run test"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/koliberr136a1/memoizor.git"
+    },
+    "keywords": [
+        "TypeScript",
+        "memoize",
+        "optimize",
+        "cache",
+        "decorator"
+    ],
+    "author": "KoLiBer",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/koliberr136a1/memoizor/issues"
+    },
+    "homepage": "https://github.com/koliberr136a1/memoizor#readme",
+    "devDependencies": {
+        "jest": "^24.8.0"
+    }
+}
